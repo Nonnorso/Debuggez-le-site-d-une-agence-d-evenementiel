@@ -2,7 +2,15 @@ import PropTypes from "prop-types";
 
 import "./style.scss";
 
-const ModalEvent = ({ event }) => (
+const ModalEvent = ({ event }) => {
+
+  const eventDate = new Date(event.date);
+  const year = eventDate.getFullYear();
+  const month = String(eventDate.getMonth() + 1).padStart(2, '0'); 
+  const day = String(eventDate.getDate()).padStart(2, '0');
+  const formattedDate = `${year}-${month}-${day}`;
+
+  return (
     <div className="ModalEvent">
       <div className="ModalEvent__imageContainer">
         <img
@@ -13,7 +21,7 @@ const ModalEvent = ({ event }) => (
       </div>
       <div className="ModalEvent__title">
         <div className="ModalEvent__titleLabel">{event.title}</div>
-        <div className="ModalEvent__titlePeriode">{event.periode}</div>
+        <div className="ModalEvent__titlePeriode">{formattedDate}</div>
       </div>
       <div className="ModalEvent__descriptionContainer">
         <h3>Description</h3>
@@ -31,6 +39,7 @@ const ModalEvent = ({ event }) => (
       </div>
     </div>
   );
+};
 
 ModalEvent.propTypes = {
   // eslint-disable-next-line react/forbid-prop-types
