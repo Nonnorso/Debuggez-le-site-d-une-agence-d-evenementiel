@@ -7,21 +7,26 @@ import "./style.scss";
 const Slider = () => {
   const { data } = useData();
   const [index, setIndex] = useState(0);
-  const byDateDesc = data?.focus.sort((evtA, evtB) =>
+  const byDateAsc = data?.focus.sort((evtA, evtB) =>
     new Date(evtA.date) > new Date(evtB.date) ? 1 : -1
   ) || [];
+  
   const nextCard = () => {
     setTimeout(
-      () => setIndex((index + 1) % byDateDesc.length),
+      () => {
+        setIndex((index + 1) % byDateAsc.length);
+      },
       5000
     );
   };
+  
   useEffect(() => {
     nextCard();
-  }, [index, byDateDesc]);
+  }, [index, byDateAsc]);
+  
   return (
     <div className="SlideCardList">
-      {byDateDesc?.map((event, idx) => (
+      {byDateAsc?.map((event, idx) => (
         <div
           key={event.id}
           className={`SlideCard SlideCard--${
@@ -36,22 +41,22 @@ const Slider = () => {
               <div>{getMonth(new Date(event.date))}</div>
             </div>
           </div>
-          <div className="SlideCard__paginationContainer">
-            <div className="SlideCard__pagination">
-              {byDateDesc.map((_, radioIdx) => (
-                /* eslint-disable react/no-array-index-key */
-                <input
-                  key={`${event.id}-${radioIdx}`}
-                  type="radio"
-                  name="radio-button"
-                  checked={idx === radioIdx}
-                />
-                /* eslint-enable react/no-array-index-key */
-              ))}
-            </div>
-          </div>
         </div>
       ))}
+      <div className="SlideCard__paginationContainer">
+        <div className="SlideCard__pagination">
+          {byDateAsc.map((_, radioIdx) => (
+            /* eslint-disable react/no-array-index-key */
+            <input
+              key={`radio-${radioIdx}`}
+              type="radio"
+              name="radio-button"
+              checked={index === radioIdx}
+            />
+            /* eslint-enable react/no-array-index-key */
+          ))}
+        </div>
+      </div>
     </div>
   );
 };
