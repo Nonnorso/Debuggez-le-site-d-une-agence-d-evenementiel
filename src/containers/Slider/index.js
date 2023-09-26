@@ -10,20 +10,21 @@ const Slider = () => {
   const byDateAsc = data?.focus.sort((evtA, evtB) =>
     new Date(evtA.date) > new Date(evtB.date) ? 1 : -1
   ) || [];
-  
+
   const nextCard = () => {
-    setTimeout(
-      () => {
-        setIndex((index + 1) % byDateAsc.length);
-      },
-      5000
-    );
+    setIndex((index + 1) % byDateAsc.length);
   };
-  
+
   useEffect(() => {
-    nextCard();
+    const interval = setInterval(nextCard, 5000);
+
+    return () => clearInterval(interval);
   }, [index, byDateAsc]);
-  
+
+  const handleBulletPointClick = (clickedIndex) => {
+    setIndex(clickedIndex); 
+  };
+
   return (
     <div className="SlideCardList">
       {byDateAsc?.map((event, idx) => (
@@ -51,7 +52,8 @@ const Slider = () => {
               key={`radio-${radioIdx}`}
               type="radio"
               name="radio-button"
-              checked={index === radioIdx}
+              checked={index === radioIdx} 
+              onClick={() => handleBulletPointClick(radioIdx)}
             />
             /* eslint-enable react/no-array-index-key */
           ))}
