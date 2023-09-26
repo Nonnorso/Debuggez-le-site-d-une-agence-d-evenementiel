@@ -7,7 +7,7 @@ import ModalEvent from "../ModalEvent";
 
 import "./style.css";
 
-const PER_PAGE = 9;
+const MAX_PER_PAGE = 9;
 
 const EventList = () => {
   const { data, error } = useData();
@@ -20,8 +20,8 @@ const EventList = () => {
     return false;
   }).filter((event, index) => {
     if (
-      (currentPage - 1) * PER_PAGE <= index &&
-      PER_PAGE * currentPage > index
+      (currentPage - 1) * MAX_PER_PAGE <= index &&
+      MAX_PER_PAGE * currentPage > index
     ) {
       return true;
     }
@@ -31,7 +31,7 @@ const EventList = () => {
     setCurrentPage(1);
     setType(evtType);
   };
-  const pageNumber = Math.floor((filteredEvents?.length || 0) / PER_PAGE) + 1;
+  const pageNumber = Math.floor((filteredEvents?.length || 0) / MAX_PER_PAGE) + 1;
   const typeList = new Set(data?.events.map((event) => event.type));
   return (
     <>
