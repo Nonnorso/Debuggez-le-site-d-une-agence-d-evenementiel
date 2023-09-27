@@ -14,6 +14,9 @@ import { useData } from "../../contexts/DataContext";
 
 const Page = () => {
   const {last} = useData()
+  if (!last) {
+    return <p>Chargement en cours...</p>;
+  }
   return <>
     <header>
       <Menu />
