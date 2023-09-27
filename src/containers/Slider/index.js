@@ -53,6 +53,7 @@ const Slider = () => {
               type="radio"
               name="radio-button"
               checked={index === radioIdx} 
+              onChange={() => {}}
               onClick={() => handleBulletPointClick(radioIdx)}
             />
             /* eslint-enable react/no-array-index-key */
