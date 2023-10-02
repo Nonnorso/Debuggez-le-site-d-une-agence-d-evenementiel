@@ -12,7 +12,7 @@ const mockContactApi = () => new Promise((resolve) => {
 
 const Form = ({ onSuccess, onError }) => {
   const [sending, setSending] = useState(false);
-  const [errors, setErrors] = useState({}); // Utilisez un objet pour stocker les messages d'erreur
+  const [errors, setErrors] = useState({}); 
 
   const isValidEmailFormat = (email) => {
     const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
@@ -72,9 +72,9 @@ const Form = ({ onSuccess, onError }) => {
     <form onSubmit={sendContact}>
       <div className="row">
         <div className="col">
-          <Field name="nom" placeholder="" label="Nom" />
+          <Field name="Nom" placeholder="" label="Nom" />
           {errors.nom && <div className="error-message">{errors.nom}</div>}
-          <Field name="prenom" placeholder="" label="Prénom" />
+          <Field name="Prénom" placeholder="" label="Prénom" />
           {errors.prenom && <div className="error-message">{errors.prenom}</div>}
           <Select
             selection={["Personnel", "Entreprise"]}
@@ -83,7 +83,7 @@ const Form = ({ onSuccess, onError }) => {
             type="large"
             titleEmpty
           />
-          <Field name="email" placeholder="" label="Email" />
+          <Field name="Email" placeholder="" label="Email" />
           {errors.email && <div className="error-message">{errors.email}</div>}
           <Button type={BUTTON_TYPES.SUBMIT} disabled={sending}>
             {sending ? "En cours" : "Envoyer"}
