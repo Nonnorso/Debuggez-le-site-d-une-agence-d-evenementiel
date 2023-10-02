@@ -72,9 +72,9 @@ const Form = ({ onSuccess, onError }) => {
     <form onSubmit={sendContact}>
       <div className="row">
         <div className="col">
-          <Field name="Nom" placeholder="" label="Nom" />
+          <Field name="nom" placeholder="" label="Nom" />
           {errors.nom && <div className="error-message">{errors.nom}</div>}
-          <Field name="Prénom" placeholder="" label="Prénom" />
+          <Field name="prenom" placeholder="" label="Prénom" />
           {errors.prenom && <div className="error-message">{errors.prenom}</div>}
           <Select
             selection={["Personnel", "Entreprise"]}
@@ -83,7 +83,7 @@ const Form = ({ onSuccess, onError }) => {
             type="large"
             titleEmpty
           />
-          <Field name="Email" placeholder="" label="Email" />
+          <Field name="email" placeholder="" label="Email" />
           {errors.email && <div className="error-message">{errors.email}</div>}
           <Button type={BUTTON_TYPES.SUBMIT} disabled={sending}>
             {sending ? "En cours" : "Envoyer"}
