@@ -24,37 +24,34 @@ const Form = ({ onSuccess, onError }) => {
       evt.preventDefault();
       setSending(true);
       setErrors({});
-
-      const nom = evt.target.nom.value;
-      const prenom = evt.target.prenom.value;
-      const email = evt.target.email.value;
-      const message = evt.target.message.value;
-
+  
+      const { nom, prenom, email, message } = evt.target;
+  
       const newErrors = {};
-
-      if (!nom) {
+  
+      if (!nom || !nom.value) {
         newErrors.nom = "Veuillez remplir ce champ.";
       }
-
-      if (!prenom) {
+  
+      if (!prenom || !prenom.value) {
         newErrors.prenom = "Veuillez remplir ce champ.";
       }
-
-      if (!isValidEmailFormat(email)) {
+  
+      if (!email || !isValidEmailFormat(email.value)) {
         newErrors.email = "Veuillez entrer une adresse e-mail valide (ex. exemple@email.com).";
       }
-
-      if (!message) {
+  
+      if (!message || !message.value) {
         newErrors.message = "Veuillez entrer un message.";
       }
-
+  
       setErrors(newErrors);
-
+  
       if (Object.keys(newErrors).length > 0) {
         setSending(false);
         return;
       }
-
+  
       try {
         await mockContactApi();
         setSending(false);
