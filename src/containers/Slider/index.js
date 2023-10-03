@@ -29,7 +29,7 @@ const Slider = () => {
     <div className="SlideCardList">
       {byDateAsc?.map((event, idx) => (
         <div
-          key={event.id}
+          key={idx}
           className={`SlideCard SlideCard--${
             index === idx ? "display" : "hide"
           }`}
@@ -47,7 +47,6 @@ const Slider = () => {
       <div className="SlideCard__paginationContainer">
         <div className="SlideCard__pagination">
           {byDateAsc.map((_, radioIdx) => (
-            /* eslint-disable react/no-array-index-key */
             <input
               key={`radio-${radioIdx}`}
               type="radio"
@@ -56,7 +55,6 @@ const Slider = () => {
               onChange={() => {}}
               onClick={() => handleBulletPointClick(radioIdx)}
             />
-            /* eslint-enable react/no-array-index-key */
           ))}
         </div>
       </div>
