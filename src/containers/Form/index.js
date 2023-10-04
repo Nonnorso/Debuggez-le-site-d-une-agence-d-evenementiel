@@ -7,7 +7,7 @@ import Button, { BUTTON_TYPES } from "../../components/Button";
 const mockContactApi = () => new Promise((resolve) => {
   setTimeout(() => {
     resolve(); 
-  }, 1000);
+  }, 800);
 });
 
 const Form = ({ onSuccess, onError }) => {
@@ -82,7 +82,11 @@ const Form = ({ onSuccess, onError }) => {
           />
           <Field name="email" placeholder="" label="Email" />
           {errors.email && <div className="error-message">{errors.email}</div>}
-          <Button type={BUTTON_TYPES.SUBMIT} disabled={sending}>
+          <Button
+            type={BUTTON_TYPES.SUBMIT}
+            data-testid="button-test-id"
+            disabled={sending}
+          >
             {sending ? "En cours" : "Envoyer"}
           </Button>
         </div>
