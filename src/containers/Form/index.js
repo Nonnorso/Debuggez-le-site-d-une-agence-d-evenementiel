@@ -12,7 +12,7 @@ const mockContactApi = () => new Promise((resolve) => {
 
 const Form = ({ onSuccess, onError }) => {
   const [sending, setSending] = useState(false);
-  const [errors, setErrors] = useState({}); 
+  const [errors, setErrors] = useState({});
 
   const isValidEmailFormat = (email) => {
     const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
@@ -24,34 +24,30 @@ const Form = ({ onSuccess, onError }) => {
       evt.preventDefault();
       setSending(true);
       setErrors({});
-  
+
       const { nom, prenom, email, message } = evt.target;
-  
+
       const newErrors = {};
-  
+
       if (!nom || !nom.value) {
         newErrors.nom = "Veuillez remplir ce champ.";
       }
-  
+
       if (!prenom || !prenom.value) {
         newErrors.prenom = "Veuillez remplir ce champ.";
       }
-  
+
       if (!email || !isValidEmailFormat(email.value)) {
-        newErrors.email = "Veuillez entrer une adresse e-mail valide (ex. exemple@email.com).";
+        newErrors.email =
+          "Veuillez entrer une adresse e-mail valide (ex. exemple@email.com).";
       }
-  
+
       if (!message || !message.value) {
         newErrors.message = "Veuillez entrer un message.";
       }
-  
+
       setErrors(newErrors);
-  
-      if (Object.keys(newErrors).length > 0) {
-        setSending(false);
-        return;
-      }
-  
+
       try {
         await mockContactApi();
         setSending(false);

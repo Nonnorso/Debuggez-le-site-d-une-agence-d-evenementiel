@@ -121,9 +121,9 @@ if (loading) {
       <div className="col presta">
         <h3>Notre derniére prestation</h3>
         <EventCard
-          imageSrc={last?.cover}
-          title={last?.title}
-          date={new Date(last?.date)}
+           imageSrc={last ? last.cover : ""}
+           title={last ? last.title : ""}
+           date={last ? new Date(last.date) : new Date(0)}
           small
           label="boom"
         />
