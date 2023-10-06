@@ -13,10 +13,11 @@ import Modal from "../../containers/Modal";
 import { useData } from "../../contexts/DataContext";
 
 const Page = () => {
-  const {last} = useData()
-  if (!last) {
-    return <p>Chargement en cours...</p>;
-  }
+  const { last, loading } = useData();
+
+if (loading) {
+  return <p>Chargement en cours...</p>;
+}
   return <>
     <header>
       <Menu />

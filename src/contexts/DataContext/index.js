@@ -8,7 +8,7 @@ import {
   useState,
 } from "react";
 
-const DataContext = createContext({});
+const DataContext = createContext({ data: null, last: null, error: null });
 
 export const api = {
   loadData: async () => {
@@ -39,7 +39,7 @@ export const DataProvider = ({ children }) => {
     getData();
   }, [data, getData]);
 
-  const contextValue = useMemo(() => ({ data, last, error}), [data, last, error]);
+  const contextValue = useMemo(() => ({ data, last, error, loading: data === null }), [data, last, error]);
 
   return (
     <DataContext.Provider value={contextValue}>
